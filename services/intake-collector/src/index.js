@@ -198,26 +198,59 @@ function buildEmail(record) {
   };
 }
 
+// Two providers supported. Brevo needs only single-sender verification (click a
+// link in the inbox), so it can send as admin@firststate-growth.com with no DNS
+// changes. Resend needs a verified domain. Whichever key is set wins.
 async function notify(env, record) {
-  if (!env.RESEND_API_KEY || !env.NOTIFY_TO) return "not_configured";
+  const to = String(env.NOTIFY_TO || "").trim();
+  if (!to) return "not_configured";
+
   const mail = buildEmail(record);
+  const replyTo = record.answers?.contact_email || undefined;
+  const recipients = to.split(",").map((s) => s.trim()).filter(Boolean);
+
   try {
-    const r = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: env.NOTIFY_FROM || FROM,
-        to: String(env.NOTIFY_TO).split(",").map((s) => s.trim()),
-        reply_to: record.answers?.contact_email || undefined,
-        subject: mail.subject,
-        text: mail.text,
-        html: mail.html,
-      }),
-    });
-    return r.ok ? "sent" : `failed_${r.status}`;
+    if (env.BREVO_API_KEY) {
+      const fromEmail = env.NOTIFY_FROM || "admin@firststate-growth.com";
+      const r = await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: {
+          "api-key": env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        body: JSON.stringify({
+          sender: { email: fromEmail, name: "First State Growth Intake" },
+          to: recipients.map((email) => ({ email })),
+          replyTo: replyTo ? { email: replyTo } : undefined,
+          subject: mail.subject,
+          textContent: mail.text,
+          htmlContent: mail.html,
+        }),
+      });
+      return r.ok ? "sent_brevo" : `brevo_failed_${r.status}`;
+    }
+
+    if (env.RESEND_API_KEY) {
+      const r = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: env.NOTIFY_FROM || FROM,
+          to: recipients,
+          reply_to: replyTo,
+          subject: mail.subject,
+          text: mail.text,
+          html: mail.html,
+        }),
+      });
+      return r.ok ? "sent_resend" : `resend_failed_${r.status}`;
+    }
+
+    return "not_configured";
   } catch {
     return "failed_exception";
   }
