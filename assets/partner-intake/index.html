@@ -607,6 +607,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:v
       return r.json();
     }).then(function(){
       try { localStorage.removeItem(KEY); } catch(e){}
+      if (window.__intakeSent) window.__intakeSent();
       document.getElementById('form-root').style.display = 'none';
       document.getElementById('done').className = 'done on';
       window.scrollTo({ top: 0 });
@@ -617,6 +618,25 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:v
       err.className = 'err on';
     });
   });
+
+  // Warn if they leave with answers typed but never sent. Autosaving to this
+  // device is not the same as sending, and respondents will not know that.
+  var sent = false;
+  window.addEventListener('beforeunload', function(e){
+    if (sent) return;
+    var d = collect();
+    var typed = Object.keys(d).some(function(k){
+      if (k === '_engagement_blocks' || k === 'website_url') return false;
+      var v = d[k];
+      return Array.isArray(v) ? v.length > 0 : String(v || '').trim() !== '';
+    });
+    if (!typed) return;
+    e.preventDefault();
+    e.returnValue = '';
+    return '';
+  });
+  form.addEventListener('submit', function(){ /* set after success below */ });
+  window.__intakeSent = function(){ sent = true; };
 
   restore(); markOpts(); progress();
 })();
