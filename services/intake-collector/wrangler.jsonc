@@ -1,0 +1,11 @@
+{
+  "name": "intake-collector",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "kv_namespaces": [
+    {
+      "binding": "PARTNER_INTAKE",
+      "id": "f24bdeabd089483d8f99a954dcf82e70"
+    }
+  ]
+}

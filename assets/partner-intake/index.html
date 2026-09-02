@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Certification Partner Intake — First State Growth LLC</title>
+<meta name="description" content="Partner intake form for management systems certification consultancies working with First State Growth LLC.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8B%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f6f6f4; --surface:#fff; --ink:#14161a; --muted:#5f6672; --faint:#8b93a0;
+  --line:#e0e2e6; --accent:#1c4f8a; --accent-soft:#eaf1f9; --ok:#146b4a; --ok-soft:#e7f2ed;
+  --shadow:0 1px 2px rgba(16,20,28,.05),0 10px 30px -18px rgba(16,20,28,.25);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#111317; --surface:#191c21; --ink:#e8eaee; --muted:#98a0ad; --faint:#79818f;
+    --line:#282c33; --accent:#6ba4e8; --accent-soft:#16222f; --ok:#5cbf95; --ok-soft:#15251f;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -18px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111317; --surface:#191c21; --ink:#e8eaee; --muted:#98a0ad; --faint:#79818f;
+  --line:#282c33; --accent:#6ba4e8; --accent-soft:#16222f; --ok:#5cbf95; --ok-soft:#15251f;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -18px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:30px}
+.brand{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--accent)}
+.brand span{color:var(--faint);font-weight:500}
+h1{font-size:clamp(24px,3.6vw,32px);letter-spacing:-.02em;line-height:1.2;margin:12px 0 0}
+
+.intro{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:10px;padding:20px 22px;margin-bottom:28px;box-shadow:var(--shadow)}
+.intro p{margin:0 0 12px}
+.intro p:last-child{margin-bottom:0}
+.intro strong{font-weight:650}
+.meta{display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;color:var(--muted);margin-top:16px;
+  padding-top:14px;border-top:1px solid var(--line)}
+
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0 12px;margin-bottom:8px}
+.track{height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .25s ease}
+.barlabel{font-size:12.5px;color:var(--muted);margin-top:7px;display:flex;justify-content:space-between}
+
+section.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.sechead{display:flex;gap:12px;align-items:baseline;margin-bottom:6px}
+.num{font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:5px;
+  padding:3px 8px;letter-spacing:.04em}
+h2{font-size:19px;letter-spacing:-.01em;margin:0;font-weight:650}
+.secnote{color:var(--muted);font-size:14.5px;margin:8px 0 22px}
+.secnote.important{background:var(--accent-soft);border-radius:8px;padding:13px 15px;color:var(--ink)}
+
+.q{margin-bottom:22px}
+.q:last-child{margin-bottom:0}
+label.qt{display:block;font-weight:600;font-size:15px;margin-bottom:3px}
+.help{display:block;color:var(--muted);font-size:13.5px;margin-bottom:9px;font-weight:400}
+.req{color:#b3261e;font-weight:700}
+
+input[type=text],input[type=email],input[type=number],input[type=url],select,textarea{
+  width:100%;padding:10px 12px;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);
+  border:1px solid var(--line);border-radius:8px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+textarea{min-height:88px;resize:vertical}
+.row{display:grid;gap:12px}
+@media(min-width:620px){.row.two{grid-template-columns:1fr 1fr}.row.three{grid-template-columns:1fr 1fr 1fr}}
+
+.opts{display:grid;gap:8px}
+@media(min-width:620px){.opts.cols{grid-template-columns:1fr 1fr}}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);
+  border-radius:8px;cursor:pointer;background:var(--bg);transition:border-color .12s,background .12s}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin:3px 0 0;flex:none;accent-color:var(--accent);width:16px;height:16px}
+.opt span{font-size:14.5px}
+.opt span em{display:block;font-style:normal;color:var(--muted);font-size:13px;margin-top:1px}
+.opt.on{border-color:var(--accent);background:var(--accent-soft)}
+
+.eng{border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;background:var(--bg)}
+.eng h3{margin:0 0 14px;font-size:14px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+button.add{background:none;border:1px dashed var(--line);color:var(--accent);font:inherit;font-weight:600;
+  font-size:14.5px;padding:11px 16px;border-radius:8px;cursor:pointer;width:100%}
+button.add:hover{border-color:var(--accent);background:var(--accent-soft)}
+
+.actions{margin-top:30px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+button.submit{background:var(--accent);color:#fff;border:0;font:inherit;font-weight:650;font-size:16px;
+  padding:14px 30px;border-radius:9px;cursor:pointer}
+button.submit:hover{filter:brightness(1.08)}
+button.submit:disabled{opacity:.55;cursor:not-allowed}
+.saved{font-size:13.5px;color:var(--muted)}
+
+.err{background:#fdecea;color:#8c1d18;border:1px solid #f3c6c1;border-radius:8px;padding:12px 14px;
+  font-size:14.5px;margin-top:16px;display:none}
+.err.on{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{background:#2c1614;color:#f2b8b2;border-color:#5c2a25}}
+
+.done{display:none;text-align:center;padding:60px 24px}
+.done.on{display:block}
+.done .tick{width:56px;height:56px;border-radius:50%;background:var(--ok-soft);color:var(--ok);
+  display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px}
+.done h2{font-size:24px;margin-bottom:10px}
+.done p{color:var(--muted);max-width:44ch;margin:0 auto 10px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--faint);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div id="form-root">
+  <header class="masthead">
+    <div class="brand">First State Growth LLC <span>· United States</span></div>
+    <h1>Certification Partner Intake</h1>
+  </header>
+
+  <div class="intro">
+    <p>We are a United States company building a platform that helps businesses in the US, UK and Europe work out what management systems certification will cost them — and then connects them with a consultancy that can do the work.</p>
+    <p>We are looking for a small number of experienced consultancies to work with. This form helps us understand what your firm does and how you price it. <strong>There are no wrong answers.</strong> If you do not know something, leave it blank or write "not sure" — we would much rather have honest gaps than guesses.</p>
+    <p>Your answers are seen only by our team. Nothing here is published with your firm's name attached, and we never publish your clients' names or their prices.</p>
+    <div class="meta">
+      <span>About 15 minutes</span>
+      <span>Your answers save automatically</span>
+      <span>Questions? admin@firststate-growth.com</span>
+    </div>
+  </div>
+
+  <div class="bar">
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="barlabel"><span id="pct">0% complete</span><span class="saved" id="saved"></span></div>
+  </div>
+
+  <form id="f" autocomplete="on">
+  <p class="hp"><label>Leave this empty<input type="text" name="website_url" tabindex="-1" autocomplete="off"></label></p>
+
+  <!-- 1 -->
+  <section class="card">
+    <div class="sechead"><span class="num">1</span><h2>About your firm</h2></div>
+    <p class="secnote">Basic details so we know who we are speaking with.</p>
+
+    <div class="q">
+      <label class="qt" for="firm_name">Name of your firm <span class="req">*</span></label>
+      <input type="text" id="firm_name" name="firm_name" required>
+    </div>
+    <div class="q row two">
+      <div><label class="qt" for="city">City</label><input type="text" id="city" name="city" placeholder="Lucknow"></div>
+      <div><label class="qt" for="country">Country</label><input type="text" id="country" name="country" value="India"></div>
+    </div>
+    <div class="q row two">
+      <div><label class="qt" for="founded">Year the firm started</label>
+        <span class="help">A rough year is fine.</span>
+        <input type="number" id="founded" name="founded" min="1950" max="2026" placeholder="2015"></div>
+      <div><label class="qt" for="team">How many consultants work there?</label>
+        <span class="help">Counting only people who do certification work.</span>
+        <input type="number" id="team" name="team" min="1" placeholder="6"></div>
+    </div>
+    <div class="q"><label class="qt" for="site">Website, if you have one</label>
+      <input type="text" id="site" name="website" placeholder="www.example.com"></div>
+
+    <div class="q row two">
+      <div><label class="qt" for="contact">Your name <span class="req">*</span></label>
+        <input type="text" id="contact" name="contact_name" required></div>
+      <div><label class="qt" for="role">Your role</label>
+        <input type="text" id="role" name="contact_role" placeholder="Director"></div>
+    </div>
+    <div class="q row two">
+      <div><label class="qt" for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" name="contact_email" required></div>
+      <div><label class="qt" for="phone">Phone or WhatsApp</label>
+        <input type="text" id="phone" name="contact_phone" placeholder="+91 ..."></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="card">
+    <div class="sechead"><span class="num">2</span><h2>What your firm can deliver</h2></div>
+    <p class="secnote">Tick every standard your firm has actually helped a client get certified in. Not ones you could learn — ones you have done.</p>
+
+    <div class="q">
+      <label class="qt">Standards you have delivered</label>
+      <div class="opts cols" data-group="standards">
+        <label class="opt"><input type="checkbox" name="standards" value="ISO 9001"><span>ISO 9001<em>Quality management</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="ISO 27001"><span>ISO 27001<em>Information security</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="ISO 14001"><span>ISO 14001<em>Environment</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="ISO 45001"><span>ISO 45001<em>Health and safety</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="ISO 13485"><span>ISO 13485<em>Medical devices</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="ISO 22000"><span>ISO 22000 / FSSC<em>Food safety</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="IATF 16949"><span>IATF 16949<em>Automotive</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="AS9100"><span>AS9100<em>Aerospace</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="ISO 17025"><span>ISO 17025<em>Testing laboratories</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="ISO 50001"><span>ISO 50001<em>Energy management</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="SOC 2"><span>SOC 2 readiness<em>US security reporting</em></span></label>
+        <label class="opt"><input type="checkbox" name="standards" value="Other"><span>Something else<em>Tell us below</em></span></label>
+      </div>
+    </div>
+    <div class="q"><label class="qt" for="std_other">Any other standards</label>
+      <input type="text" id="std_other" name="standards_other" placeholder="e.g. ISO 20000, HACCP"></div>
+
+    <div class="q">
+      <label class="qt" for="strongest">Which one standard is your firm strongest in?</label>
+      <span class="help">The one you would be happy to be judged on.</span>
+      <input type="text" id="strongest" name="strongest_standard" placeholder="ISO 9001">
+    </div>
+
+    <div class="q">
+      <label class="qt">Roughly how many clients have you helped get certified in the last two years?</label>
+      <div class="opts cols" data-group="volume">
+        <label class="opt"><input type="radio" name="volume" value="1-5"><span>1 to 5</span></label>
+        <label class="opt"><input type="radio" name="volume" value="6-15"><span>6 to 15</span></label>
+        <label class="opt"><input type="radio" name="volume" value="16-40"><span>16 to 40</span></label>
+        <label class="opt"><input type="radio" name="volume" value="40+"><span>More than 40</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="card">
+    <div class="sechead"><span class="num">3</span><h2>Qualifications</h2></div>
+    <p class="secnote">Buyers in the US and Europe ask about these before they hire anyone. Having them is a real advantage, so it is worth answering carefully.</p>
+
+    <div class="q">
+      <label class="qt">Do any of your consultants hold a Lead Auditor or Lead Implementer certificate?</label>
+      <div class="opts" data-group="lead_auditor">
+        <label class="opt"><input type="radio" name="lead_auditor" value="yes_several"><span>Yes, several of us</span></label>
+        <label class="opt"><input type="radio" name="lead_auditor" value="yes_one"><span>Yes, one person</span></label>
+        <label class="opt"><input type="radio" name="lead_auditor" value="no"><span>No</span></label>
+        <label class="opt"><input type="radio" name="lead_auditor" value="unsure"><span>Not sure</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="qt">Who issued those certificates?</label>
+      <span class="help">It is usually printed on the certificate itself.</span>
+      <div class="opts cols" data-group="cert_bodies_issuer">
+        <label class="opt"><input type="checkbox" name="issuer" value="IRCA"><span>IRCA / CQI</span></label>
+        <label class="opt"><input type="checkbox" name="issuer" value="PECB"><span>PECB</span></label>
+        <label class="opt"><input type="checkbox" name="issuer" value="Exemplar Global"><span>Exemplar Global / RABQSA</span></label>
+        <label class="opt"><input type="checkbox" name="issuer" value="TUV"><span>TÜV</span></label>
+        <label class="opt"><input type="checkbox" name="issuer" value="BSI"><span>BSI</span></label>
+        <label class="opt"><input type="checkbox" name="issuer" value="Other"><span>Someone else</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="qt">Does anyone in your firm hold these security qualifications?</label>
+      <span class="help">Only relevant if you do ISO 27001 or SOC 2 work. Skip otherwise.</span>
+      <div class="opts cols" data-group="sec_certs">
+        <label class="opt"><input type="checkbox" name="sec_certs" value="CISSP"><span>CISSP</span></label>
+        <label class="opt"><input type="checkbox" name="sec_certs" value="CISA"><span>CISA</span></label>
+        <label class="opt"><input type="checkbox" name="sec_certs" value="CISM"><span>CISM</span></label>
+        <label class="opt"><input type="checkbox" name="sec_certs" value="CRISC"><span>CRISC</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="qt">Is your own firm certified to any standard?</label>
+      <span class="help">For example, your own ISO 9001 or ISO 27001 certificate. This helps a lot with US buyers.</span>
+      <input type="text" name="own_certification" placeholder="e.g. ISO 9001 since 2019 — or 'no'">
+    </div>
+
+    <div class="q">
+      <label class="qt">If a serious client asked, could you send copies of these certificates?</label>
+      <div class="opts" data-group="can_share_certs">
+        <label class="opt"><input type="radio" name="can_share_certs" value="yes"><span>Yes</span></label>
+        <label class="opt"><input type="radio" name="can_share_certs" value="no"><span>No</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="card">
+    <div class="sechead"><span class="num">4</span><h2>Certification bodies you have worked with</h2></div>
+    <p class="secnote">The certification body is the organisation that audits your client and issues the certificate — not you. We want to know which ones you have dealt with.</p>
+
+    <div class="q">
+      <label class="qt">Which certification bodies have audited your clients?</label>
+      <div class="opts cols" data-group="cbs">
+        <label class="opt"><input type="checkbox" name="cbs" value="BSI"><span>BSI</span></label>
+        <label class="opt"><input type="checkbox" name="cbs" value="TUV SUD"><span>TÜV SÜD</span></label>
+        <label class="opt"><input type="checkbox" name="cbs" value="TUV Rheinland"><span>TÜV Rheinland</span></label>
+        <label class="opt"><input type="checkbox" name="cbs" value="TUV Nord"><span>TÜV Nord</span></label>
+        <label class="opt"><input type="checkbox" name="cbs" value="SGS"><span>SGS</span></label>
+        <label class="opt"><input type="checkbox" name="cbs" value="Bureau Veritas"><span>Bureau Veritas</span></label>
+        <label class="opt"><input type="checkbox" name="cbs" value="DNV"><span>DNV</span></label>
+        <label class="opt"><input type="checkbox" name="cbs" value="Intertek"><span>Intertek</span></label>
+        <label class="opt"><input type="checkbox" name="cbs" value="LRQA"><span>LRQA</span></label>
+        <label class="opt"><input type="checkbox" name="cbs" value="Indian CB"><span>An Indian certification body</span></label>
+      </div>
+    </div>
+    <div class="q"><label class="qt" for="cb_other">Any others</label>
+      <input type="text" id="cb_other" name="cbs_other"></div>
+
+    <div class="q">
+      <label class="qt">Out of every ten clients you prepare, how many pass their main audit the first time?</label>
+      <span class="help">Please be honest. Nobody is at ten out of ten, and a realistic answer tells us you know your work.</span>
+      <div class="opts cols" data-group="pass_rate">
+        <label class="opt"><input type="radio" name="pass_rate" value="10"><span>All ten</span></label>
+        <label class="opt"><input type="radio" name="pass_rate" value="8-9"><span>Eight or nine</span></label>
+        <label class="opt"><input type="radio" name="pass_rate" value="6-7"><span>Six or seven</span></label>
+        <label class="opt"><input type="radio" name="pass_rate" value="<6"><span>Fewer than six</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="card">
+    <div class="sechead"><span class="num">5</span><h2>Working with clients abroad</h2></div>
+    <p class="secnote">We need to understand what is realistic for your team, not what sounds impressive. A "no" here does not rule anything out.</p>
+
+    <div class="q">
+      <label class="qt">Have you ever worked with a client outside India?</label>
+      <div class="opts" data-group="intl">
+        <label class="opt"><input type="radio" name="intl_experience" value="yes"><span>Yes</span></label>
+        <label class="opt"><input type="radio" name="intl_experience" value="no"><span>No, only Indian clients</span></label>
+      </div>
+    </div>
+    <div class="q"><label class="qt" for="intl_where">If yes, which countries?</label>
+      <input type="text" id="intl_where" name="intl_countries" placeholder="UAE, Singapore..."></div>
+
+    <div class="q">
+      <label class="qt">Could someone on your team take calls during US working hours?</label>
+      <span class="help">US morning is roughly 6:30pm to 11:30pm India time.</span>
+      <div class="opts" data-group="hours">
+        <label class="opt"><input type="radio" name="us_hours" value="yes"><span>Yes, regularly</span></label>
+        <label class="opt"><input type="radio" name="us_hours" value="sometimes"><span>Sometimes, if arranged in advance</span></label>
+        <label class="opt"><input type="radio" name="us_hours" value="no"><span>No</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="qt">How do you normally work with a client?</label>
+      <div class="opts" data-group="mode">
+        <label class="opt"><input type="radio" name="delivery_mode" value="onsite"><span>Mostly visiting their office</span></label>
+        <label class="opt"><input type="radio" name="delivery_mode" value="remote"><span>Mostly online</span></label>
+        <label class="opt"><input type="radio" name="delivery_mode" value="both"><span>A mix of both</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="qt">Would you sign a confidentiality agreement (NDA) with a client?</label>
+      <div class="opts" data-group="nda">
+        <label class="opt"><input type="radio" name="nda" value="yes"><span>Yes</span></label>
+        <label class="opt"><input type="radio" name="nda" value="depends"><span>Depends on the terms</span></label>
+        <label class="opt"><input type="radio" name="nda" value="no"><span>No</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="qt">How do you keep client documents safe?</label>
+      <span class="help">Foreign clients will ask this, because you see sensitive internal documents. Tick whatever is true today.</span>
+      <div class="opts cols" data-group="security">
+        <label class="opt"><input type="checkbox" name="security" value="nda_staff"><span>Staff sign confidentiality agreements</span></label>
+        <label class="opt"><input type="checkbox" name="security" value="access_control"><span>Only assigned staff can open client files</span></label>
+        <label class="opt"><input type="checkbox" name="security" value="encrypted"><span>Files are password protected or encrypted</span></label>
+        <label class="opt"><input type="checkbox" name="security" value="cloud"><span>We use a business cloud account, not personal email</span></label>
+        <label class="opt"><input type="checkbox" name="security" value="none"><span>Nothing formal yet</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="card">
+    <div class="sechead"><span class="num">6</span><h2>Real project costs</h2></div>
+    <p class="secnote important"><strong>This is the most important section.</strong> We are building a tool that tells companies what certification really costs. Every other website guesses. You actually know. Real figures from real projects are what make this worth building — even two or three examples help enormously.<br><br>We combine your numbers with those from other firms and publish only broad ranges. Your firm's name is never shown next to a figure, and neither is your client's.</p>
+
+    <div id="engagements"></div>
+    <button type="button" class="add" id="addEng">+ Add another project</button>
+
+    <div class="q" style="margin-top:26px">
+      <label class="qt">How do you usually charge?</label>
+      <div class="opts" data-group="fee_model">
+        <label class="opt"><input type="radio" name="fee_model" value="fixed"><span>One fixed price for the whole project</span></label>
+        <label class="opt"><input type="radio" name="fee_model" value="daily"><span>A daily rate</span></label>
+        <label class="opt"><input type="radio" name="fee_model" value="monthly"><span>A monthly retainer</span></label>
+        <label class="opt"><input type="radio" name="fee_model" value="mixed"><span>It varies</span></label>
+      </div>
+    </div>
+
+    <div class="q row two">
+      <div><label class="qt" for="typ_small">Your usual fee for a small company</label>
+        <span class="help">Under 50 staff, one office, one standard. A range is fine.</span>
+        <input type="text" id="typ_small" name="typical_fee_small" placeholder="e.g. INR 1,50,000 - 2,50,000"></div>
+      <div><label class="qt" for="day_rate">Your day rate, if you use one</label>
+        <input type="text" id="day_rate" name="day_rate" placeholder="e.g. INR 15,000 per day"></div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="card">
+    <div class="sechead"><span class="num">7</span><h2>Working together</h2></div>
+    <p class="secnote">Nothing here is a commitment. We are only checking whether this is worth both our time.</p>
+
+    <div class="q">
+      <label class="qt">If we introduced you to a company in the US or Europe, would you want that work?</label>
+      <div class="opts" data-group="interest">
+        <label class="opt"><input type="radio" name="interest" value="yes"><span>Yes, definitely</span></label>
+        <label class="opt"><input type="radio" name="interest" value="maybe"><span>Probably, but I would want to discuss it first</span></label>
+        <label class="opt"><input type="radio" name="interest" value="no"><span>No</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="qt">Which arrangement would suit you better?</label>
+      <div class="opts" data-group="arrangement">
+        <label class="opt"><input type="radio" name="arrangement" value="direct_referral"><span>You bill the client directly<em>You handle the contract and payment, and pay us a share for the introduction</em></span></label>
+        <label class="opt"><input type="radio" name="arrangement" value="subcontract"><span>We bill the client, you do the work<em>Our US company signs the contract and pays you. Simpler for the client, less paperwork for you</em></span></label>
+        <label class="opt"><input type="radio" name="arrangement" value="either"><span>Either is fine</span></label>
+        <label class="opt"><input type="radio" name="arrangement" value="discuss"><span>I do not know yet — let us talk</span></label>
+      </div>
+    </div>
+
+    <div class="q"><label class="qt" for="ref_fee">What share for an introduction would feel fair to you?</label>
+      <span class="help">A percentage, a rupee figure, or just "let us discuss".</span>
+      <input type="text" id="ref_fee" name="referral_share" placeholder="let us discuss"></div>
+
+    <div class="q">
+      <label class="qt">Could you give two past clients as references if a serious buyer asked?</label>
+      <div class="opts" data-group="refs">
+        <label class="opt"><input type="radio" name="references" value="yes"><span>Yes</span></label>
+        <label class="opt"><input type="radio" name="references" value="maybe"><span>Probably, I would need to ask them</span></label>
+        <label class="opt"><input type="radio" name="references" value="no"><span>No</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="qt">How quickly could you start on a new project?</label>
+      <div class="opts cols" data-group="capacity">
+        <label class="opt"><input type="radio" name="capacity" value="now"><span>Straight away</span></label>
+        <label class="opt"><input type="radio" name="capacity" value="1month"><span>Within a month</span></label>
+        <label class="opt"><input type="radio" name="capacity" value="busy"><span>We are quite busy right now</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="card">
+    <div class="sechead"><span class="num">8</span><h2>Anything else</h2></div>
+    <div class="q">
+      <label class="qt" for="notes">Is there anything we have not asked that we should know?</label>
+      <span class="help">Industries you specialise in, languages you work in, anything at all.</span>
+      <textarea id="notes" name="notes"></textarea>
+    </div>
+    <div class="q">
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="consent" value="yes"><span>I am happy for these figures to be used anonymously<em>Combined with other firms and shown as ranges only, never with our name or our clients' names</em></span></label>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="submit" id="submitBtn">Send my answers</button>
+      <span class="saved" id="saved2"></span>
+    </div>
+    <div class="err" id="err"></div>
+  </section>
+  </form>
+
+  <footer>First State Growth LLC · This form is private and is not indexed by search engines.</footer>
+</div>
+
+<div class="done" id="done">
+  <div class="tick">✓</div>
+  <h2>Thank you — we have your answers</h2>
+  <p>We will read through everything properly and come back to you at the email address you gave us.</p>
+  <p>If you remembered something afterwards, just email <strong>admin@firststate-growth.com</strong>.</p>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var ENDPOINT = "https://intake-collector.yellow-pond-831d.workers.dev";
+  var KEY = "fsg-partner-intake-v1";
+  var form = document.getElementById('f');
+  var engWrap = document.getElementById('engagements');
+  var engCount = 0;
+
+  function engBlock(i){
+    var d = document.createElement('div');
+    d.className = 'eng';
+    d.innerHTML =
+      '<h3>Project ' + i + '</h3>' +
+      '<div class="q row two">' +
+        '<div><label class="qt">Which standard?</label><input type="text" name="eng'+i+'_standard" placeholder="ISO 9001"></div>' +
+        '<div><label class="qt">Client\'s country</label><input type="text" name="eng'+i+'_country" placeholder="India"></div>' +
+      '</div>' +
+      '<div class="q row two">' +
+        '<div><label class="qt">How many staff did the client have?</label><input type="number" name="eng'+i+'_employees" placeholder="45"></div>' +
+        '<div><label class="qt">How many offices or sites?</label><input type="number" name="eng'+i+'_sites" placeholder="1"></div>' +
+      '</div>' +
+      '<div class="q row two">' +
+        '<div><label class="qt">Audit days the certification body asked for</label>' +
+          '<span class="help">Stage 1 and Stage 2 together. Leave blank if unsure.</span>' +
+          '<input type="text" name="eng'+i+'_audit_days" placeholder="5"></div>' +
+        '<div><label class="qt">What the certification body charged</label>' +
+          '<span class="help">Please include the currency.</span>' +
+          '<input type="text" name="eng'+i+'_cb_fee" placeholder="INR 1,80,000"></div>' +
+      '</div>' +
+      '<div class="q row two">' +
+        '<div><label class="qt">What you charged</label><input type="text" name="eng'+i+'_our_fee" placeholder="INR 2,00,000"></div>' +
+        '<div><label class="qt">How long from start to certificate?</label><input type="text" name="eng'+i+'_duration" placeholder="4 months"></div>' +
+      '</div>';
+    return d;
+  }
+  function addEng(){ engCount++; engWrap.appendChild(engBlock(engCount)); }
+  addEng(); addEng();
+  document.getElementById('addEng').addEventListener('click', function(){
+    if (engCount >= 6) return;
+    addEng(); save();
+  });
+
+  function collect(){
+    var out = {};
+    var fd = new FormData(form);
+    fd.forEach(function(v,k){
+      if (out[k] === undefined) out[k] = v;
+      else if (Array.isArray(out[k])) out[k].push(v);
+      else out[k] = [out[k], v];
+    });
+    out._engagement_blocks = engCount;
+    return out;
+  }
+
+  function markOpts(){
+    document.querySelectorAll('.opt').forEach(function(l){
+      var i = l.querySelector('input');
+      if (i) l.classList.toggle('on', i.checked);
+    });
+  }
+
+  function progress(){
+    var fields = form.querySelectorAll('input[name]:not([name="website_url"]), select, textarea');
+    var groups = {}, filled = 0, total = 0;
+    fields.forEach(function(el){
+      if (el.type === 'checkbox' || el.type === 'radio') {
+        if (!groups[el.name]) { groups[el.name] = false; }
+        if (el.checked) groups[el.name] = true;
+      } else {
+        total++;
+        if (el.value.trim()) filled++;
+      }
+    });
+    Object.keys(groups).forEach(function(k){ total++; if (groups[k]) filled++; });
+    var p = total ? Math.round(filled / total * 100) : 0;
+    document.getElementById('fill').style.width = p + '%';
+    document.getElementById('pct').textContent = p + '% complete';
+  }
+
+  var saveTimer;
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify({ blocks: engCount, data: collect() })); } catch(e){}
+    var t = 'Saved';
+    document.getElementById('saved').textContent = t;
+    document.getElementById('saved2').textContent = 'Your answers are saved on this device';
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){ document.getElementById('saved').textContent = ''; }, 1600);
+  }
+
+  function restore(){
+    var raw;
+    try { raw = localStorage.getItem(KEY); } catch(e){ return; }
+    if (!raw) return;
+    var st;
+    try { st = JSON.parse(raw); } catch(e){ return; }
+    while (engCount < (st.blocks || 2)) addEng();
+    var d = st.data || {};
+    Object.keys(d).forEach(function(k){
+      var val = d[k];
+      var els = form.querySelectorAll('[name="' + k + '"]');
+      if (!els.length) return;
+      if (els[0].type === 'checkbox' || els[0].type === 'radio') {
+        var vals = Array.isArray(val) ? val : [val];
+        els.forEach(function(el){ el.checked = vals.indexOf(el.value) !== -1; });
+      } else {
+        els[0].value = val;
+      }
+    });
+  }
+
+  form.addEventListener('input', function(){ markOpts(); progress(); save(); });
+  form.addEventListener('change', function(){ markOpts(); progress(); save(); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var err = document.getElementById('err');
+    var btn = document.getElementById('submitBtn');
+    var data = collect();
+    if (!String(data.firm_name || '').trim() || !String(data.contact_email || '').trim()) {
+      err.textContent = 'Please fill in at least your firm name and email address so we can reply to you.';
+      err.className = 'err on';
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      return;
+    }
+    err.className = 'err';
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function(r){
+      if (!r.ok) throw new Error('bad status ' + r.status);
+      return r.json();
+    }).then(function(){
+      try { localStorage.removeItem(KEY); } catch(e){}
+      document.getElementById('form-root').style.display = 'none';
+      document.getElementById('done').className = 'done on';
+      window.scrollTo({ top: 0 });
+    }).catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Send my answers';
+      err.innerHTML = 'Sorry — that did not go through. Your answers are still saved on this page, so nothing is lost. Please try once more, or email your answers to <strong>admin@firststate-growth.com</strong>.';
+      err.className = 'err on';
+    });
+  });
+
+  restore(); markOpts(); progress();
+})();
+</script>
+</body>
+</html>
