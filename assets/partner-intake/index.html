@@ -105,6 +105,9 @@ button.submit:disabled{opacity:.55;cursor:not-allowed}
   display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px}
 .done h2{font-size:24px;margin-bottom:10px}
 .done p{color:var(--muted);max-width:44ch;margin:0 auto 10px}
+.mailbtn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:650;
+  font-size:15.5px;padding:13px 26px;border-radius:9px}
+.mailbtn:hover{filter:brightness(1.08)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--faint);font-size:13px}
 </style>
@@ -464,8 +467,9 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:v
 <div class="done" id="done">
   <div class="tick">✓</div>
   <h2>Thank you — we have your answers</h2>
-  <p>We will read through everything properly and come back to you at the email address you gave us.</p>
-  <p>If you remembered something afterwards, just email <strong>admin@firststate-growth.com</strong>.</p>
+  <p>Your email programme should have opened with your answers ready to send. <strong>Please press send in it</strong> so we have your details in writing from your own address.</p>
+  <p style="margin-top:22px"><a class="mailbtn" id="mailFallback" href="#">Open the email again</a></p>
+  <p style="font-size:13.5px">If nothing opened, email us at <strong>admin@firststate-growth.com</strong> — your answers are already saved with us either way.</p>
 </div>
 
 </div>
@@ -511,6 +515,66 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:v
     if (engCount >= 6) return;
     addEng(); save();
   });
+
+  // Build a readable plain-text summary for the respondent's own email client,
+  // so the message arrives from their company address, not from a mail service.
+  var LABELS = {
+    firm_name:'Firm', city:'City', country:'Country', founded:'Started',
+    team:'Consultants', website:'Website', contact_name:'Contact',
+    contact_role:'Role', contact_email:'Email', contact_phone:'Phone',
+    standards:'Standards delivered', standards_other:'Other standards',
+    strongest_standard:'Strongest in', volume:'Clients certified (2 yrs)',
+    lead_auditor:'Lead Auditor/Implementer', issuer:'Issued by',
+    sec_certs:'Security quals', own_certification:'Own certification',
+    can_share_certs:'Will share certificates', cbs:'Certification bodies',
+    cbs_other:'Other bodies', pass_rate:'Pass first time (of 10)',
+    intl_experience:'Worked outside India', intl_countries:'Countries',
+    us_hours:'Can work US hours', delivery_mode:'Delivery', nda:'Will sign NDA',
+    security:'Document security', fee_model:'Charging model',
+    typical_fee_small:'Typical fee (small client)', day_rate:'Day rate',
+    interest:'Wants referred work', arrangement:'Preferred arrangement',
+    referral_share:'Fair referral share', references:'Can give references',
+    capacity:'Availability', notes:'Notes', consent:'Anonymised use OK'
+  };
+  var ENGL = {
+    standard:'Standard', country:'Client country', employees:'Client staff',
+    sites:'Sites', audit_days:'Audit days', cb_fee:'Cert body fee',
+    our_fee:'Our fee', duration:'Duration'
+  };
+
+  function mailBody(d){
+    var L = [];
+    Object.keys(LABELS).forEach(function(k){
+      var v = d[k];
+      v = Array.isArray(v) ? v.join(', ') : String(v == null ? '' : v).trim();
+      if (v) L.push(LABELS[k] + ': ' + v);
+    });
+    for (var i = 1; i <= engCount; i++){
+      var rows = [];
+      Object.keys(ENGL).forEach(function(s){
+        var v = String(d['eng' + i + '_' + s] || '').trim();
+        if (v) rows.push('  ' + ENGL[s] + ': ' + v);
+      });
+      if (rows.length) L.push('', 'Project ' + i, rows.join('\n'));
+    }
+    return L.join('\n');
+  }
+
+  function mailtoHref(d){
+    var subject = 'Certification partner details - ' + (String(d.firm_name || '').trim() || 'our firm');
+    var body = mailBody(d);
+    var href = 'mailto:admin@firststate-growth.com?subject=' + encodeURIComponent(subject) +
+               '&body=' + encodeURIComponent(body);
+    // Some mail clients choke on very long URLs; trim the tail if needed.
+    if (href.length > 1900) {
+      var room = body.length - (href.length - 1900) - 60;
+      body = body.slice(0, Math.max(room, 200)) +
+        '\n\n[Remainder was too long to fit here - please ask us for the rest.]';
+      href = 'mailto:admin@firststate-growth.com?subject=' + encodeURIComponent(subject) +
+             '&body=' + encodeURIComponent(body);
+    }
+    return href;
+  }
 
   function collect(){
     var out = {};
@@ -597,6 +661,12 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:v
     err.className = 'err';
     btn.disabled = true;
     btn.textContent = 'Sending...';
+
+    // Open their own email client while we still have the click gesture, so the
+    // message is sent from their company address to ours.
+    var href = mailtoHref(data);
+    document.getElementById('mailFallback').setAttribute('href', href);
+    try { window.location.href = href; } catch(e){}
 
     fetch(ENDPOINT, {
       method: 'POST',
