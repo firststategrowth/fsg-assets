@@ -10,18 +10,21 @@ assets/<asset-slug>/index.html   ← one self-contained static asset per folder
 
 Every asset is vanilla HTML/CSS/JS in a single file. No build step, no dependencies.
 
-## Deploying an asset (Cloudflare Pages)
+## Deploying an asset (Cloudflare Pages, via CLI)
 
-1. Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → pick this repo.
-2. Project name: the asset slug (e.g. `freelance-rate-calculator`).
-3. Build command: **leave empty**. Build output directory: `assets/<asset-slug>`.
-4. Save and Deploy → live at `<project>.pages.dev` in ~30s.
-5. Custom domain: Pages project → Custom domains → add the `.us` domain (DNS is automatic when the domain is on the same Cloudflare account).
+Two commands per asset. The dashboard Git-connect flow is not used — direct upload from the CLI is faster and scriptable.
 
-One Pages project per asset, all pointing at the same repo with a different output directory.
+```sh
+wrangler pages project create <asset-slug> --production-branch=main
+wrangler pages deploy assets/<asset-slug> --project-name=<asset-slug> --branch=main --commit-dirty=true
+```
+
+Redeploys are just the second command. Custom domain: Pages project → Custom domains → add the `.us` domain (DNS is automatic when the domain sits on the same Cloudflare account).
+
+Note: projects created this way are direct-upload, which cannot later be converted to Git auto-deploy. Deploys are explicit CLI runs, not push-triggered.
 
 ## Live assets
 
 | Asset | Folder | Domain | Status |
 |---|---|---|---|
-| Freelance Rate Calculator | `assets/freelance-rate-calculator` | freelancerate.us | pending domain |
+| Freelance Rate Calculator | `assets/freelance-rate-calculator` | freelancerate.us (not yet bought) | live at https://freelance-rate-calculator-bl5.pages.dev |
