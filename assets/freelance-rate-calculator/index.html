@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelance Rate Calculator — What Should You Charge Per Hour?</title>
+<meta name="description" content="Free freelance hourly rate calculator. Enter your target income, expenses, time off and billable hours to get the hourly, day and project rate you actually need to charge.">
+<link rel="canonical" href="https://freelancerate.us/">
+<meta property="og:title" content="Freelance Rate Calculator">
+<meta property="og:description" content="Work out the hourly rate you actually need to charge — accounting for tax, expenses, and unpaid time.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%B0%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f7f6f3; --surface:#ffffff; --ink:#16150f; --muted:#6b6a63;
+  --line:#e2e0d8; --accent:#1a6b4a; --accent-soft:#e6f1eb; --warn:#8a5a12;
+  --shadow:0 1px 2px rgba(20,18,10,.05),0 8px 24px -12px rgba(20,18,10,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#131412; --surface:#1c1e1b; --ink:#eceae3; --muted:#9b9a92;
+    --line:#2c2f2b; --accent:#5fbf90; --accent-soft:#1d2f26; --warn:#d6a24a;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131412; --surface:#1c1e1b; --ink:#eceae3; --muted:#9b9a92;
+  --line:#2c2f2b; --accent:#5fbf90; --accent-soft:#1d2f26; --warn:#d6a24a;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.55 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:32px 20px 72px}
+header{margin-bottom:28px}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-.02em;margin:0 0 8px}
+.sub{color:var(--muted);margin:0;max-width:60ch}
+.grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1fr;align-items:start}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:0 0 18px;font-weight:600}
+.field{margin-bottom:16px}
+label{display:block;font-size:13.5px;font-weight:550;margin-bottom:6px}
+label .hint{display:block;font-weight:400;color:var(--muted);font-size:12.5px;margin-top:2px}
+.inputrow{display:flex;align-items:center;gap:8px}
+.pre{color:var(--muted);font-size:14px;min-width:14px;text-align:right}
+input[type=number],select{
+  width:100%;padding:10px 12px;font:inherit;font-size:15px;color:var(--ink);
+  background:var(--bg);border:1px solid var(--line);border-radius:9px;outline:none}
+input[type=number]:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.result{position:sticky;top:20px}
+.headline{background:var(--accent-soft);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center;margin-bottom:18px}
+.headline .num{font-size:clamp(38px,7vw,54px);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.headline .cap{font-size:13px;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.08em}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+td{padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+tr:last-child td{border-bottom:0}
+td.v{text-align:right;font-weight:600}
+td.k{color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.flag{display:none;margin-top:14px;padding:11px 13px;border-radius:9px;font-size:13.5px;
+  background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--warn);
+  border:1px solid color-mix(in srgb,var(--warn) 30%,transparent)}
+.flag.on{display:block}
+.prose{margin-top:56px;max-width:68ch}
+.prose h2{font-size:21px;letter-spacing:-.01em;margin:34px 0 10px}
+.prose h3{font-size:16.5px;margin:24px 0 6px}
+.prose p,.prose li{font-size:15.5px}
+.prose li{margin-bottom:6px}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);
+  font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.theme{background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;
+  padding:5px 10px;font:inherit;font-size:12.5px;cursor:pointer}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="topbar">
+  <div>
+    <h1>Freelance Rate Calculator</h1>
+    <p class="sub">Most freelancers price off a salary number and quietly lose money to tax, expenses and unpaid weeks. This works backwards from what you actually need to keep.</p>
+  </div>
+  <button class="theme" id="theme" type="button">Theme</button>
+</header>
+
+<div class="grid">
+  <section class="card">
+    <h2>Your numbers</h2>
+
+    <div class="field">
+      <label for="cur">Currency</label>
+      <select id="cur">
+        <option value="USD|$">USD — $</option>
+        <option value="EUR|€">EUR — €</option>
+        <option value="GBP|£">GBP — £</option>
+        <option value="INR|₹">INR — ₹</option>
+        <option value="CAD|C$">CAD — C$</option>
+        <option value="AUD|A$">AUD — A$</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="income">Target take-home income (per year)
+        <span class="hint">What you want left in your pocket, after tax.</span></label>
+      <div class="inputrow"><span class="pre" id="s1">$</span><input type="number" id="income" value="70000" min="0" step="1000"></div>
+    </div>
+
+    <div class="field">
+      <label for="expenses">Business expenses (per year)
+        <span class="hint">Software, hardware, insurance, accountant, coworking.</span></label>
+      <div class="inputrow"><span class="pre" id="s2">$</span><input type="number" id="expenses" value="6000" min="0" step="500"></div>
+    </div>
+
+    <div class="field">
+      <label for="tax">Effective tax rate
+        <span class="hint">Income tax plus self-employment or social contributions.</span></label>
+      <div class="inputrow"><input type="number" id="tax" value="28" min="0" max="95" step="1"><span class="pre">%</span></div>
+    </div>
+
+    <div class="field">
+      <label for="weeksoff">Weeks off per year
+        <span class="hint">Holiday, sick days, public holidays. Nobody works 52.</span></label>
+      <div class="inputrow"><input type="number" id="weeksoff" value="6" min="0" max="40" step="1"><span class="pre">wk</span></div>
+    </div>
+
+    <div class="field">
+      <label for="billable">Billable hours per working week
+        <span class="hint">Client work only — not admin, sales or invoicing. 25 is realistic in a 40-hour week.</span></label>
+      <div class="inputrow"><input type="number" id="billable" value="25" min="1" max="80" step="1"><span class="pre">hr</span></div>
+    </div>
+
+    <div class="field">
+      <label for="buffer">Safety buffer
+        <span class="hint">Cover for gaps between clients and scope creep. 10–20% is normal.</span></label>
+      <div class="inputrow"><input type="number" id="buffer" value="12" min="0" max="100" step="1"><span class="pre">%</span></div>
+    </div>
+  </section>
+
+  <section class="card result">
+    <h2>What you need to charge</h2>
+    <div class="headline">
+      <div class="num" id="hourly">$0</div>
+      <div class="cap">per billable hour</div>
+    </div>
+    <table>
+      <tbody>
+        <tr><td class="k">Day rate (8 billable hrs)</td><td class="v" id="daily">—</td></tr>
+        <tr><td class="k">Week rate (<span id="bhw">25</span> billable hrs)</td><td class="v" id="weekly">—</td></tr>
+        <tr><td class="k">Billable hours per year</td><td class="v" id="bhy">—</td></tr>
+        <tr><td class="k">Revenue you must invoice</td><td class="v" id="gross">—</td></tr>
+        <tr><td class="k">— tax at <span id="taxpct">28</span>%</td><td class="v" id="taxamt">—</td></tr>
+        <tr><td class="k">— business expenses</td><td class="v" id="expout">—</td></tr>
+        <tr><td class="k">— buffer</td><td class="v" id="bufout">—</td></tr>
+        <tr><td class="k">= take-home</td><td class="v" id="take">—</td></tr>
+      </tbody>
+    </table>
+    <div class="flag" id="flag"></div>
+    <p class="note">Rounded up to a clean number. Your rate card should be a price, not a formula — pick the nearest sensible figure above this line, never below it.</p>
+  </section>
+</div>
+
+<div class="prose">
+  <h2>How the calculation works</h2>
+  <p>The rate is built backwards from take-home pay, in this order:</p>
+  <ol>
+    <li><strong>Working weeks</strong> = 52 − your weeks off.</li>
+    <li><strong>Billable hours per year</strong> = working weeks × billable hours per week.</li>
+    <li><strong>Revenue needed</strong> = (take-home ÷ (1 − tax rate)) + expenses, then increased by your buffer.</li>
+    <li><strong>Hourly rate</strong> = revenue needed ÷ billable hours per year.</li>
+  </ol>
+
+  <h2>The three mistakes that wreck freelance pricing</h2>
+
+  <h3>1. Dividing a salary by 2,080 hours</h3>
+  <p>A salaried year is 2,080 hours, but an employer also covers holiday, sick leave, payroll taxes, hardware, software and downtime between projects. Taking a $70,000 salary and charging $34/hour hands all of that back for free. On the defaults above, the same take-home needs roughly double that rate.</p>
+
+  <h3>2. Counting every working hour as billable</h3>
+  <p>Sales calls, proposals, invoicing, bookkeeping and marketing are real work that no client pays for. Full-time freelancers typically bill 20–30 hours in a 40-hour week. If you enter 40 billable hours here, the resulting rate only works if you genuinely invoice all forty — and almost nobody does.</p>
+
+  <h3>3. Forgetting the gaps</h3>
+  <p>Projects end, clients pause, invoices land late. The buffer field exists so a two-week gap does not turn into a bad month. If your work is project-based rather than retainer-based, push the buffer toward 20%.</p>
+
+  <h2>Hourly, day rate, or fixed price?</h2>
+  <p>Use the hourly number as your floor, not your pitch. Day rates read better to clients and end the hour-counting conversation. For fixed-price work, estimate the hours honestly, add 30% for revisions, and multiply by the rate above — a fixed price that took twice as long is just a discount you never agreed to.</p>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>What tax rate should I enter?</h3>
+  <p>Your all-in effective rate, not your top bracket — income tax plus self-employment or social contributions. US sole proprietors commonly land near 25–32%; UK and EU freelancers often higher. If you are unsure, last year's tax paid divided by gross income is close enough.</p>
+
+  <h3>Should expenses include my own pay?</h3>
+  <p>No. Expenses are business costs only. Your pay is the take-home field.</p>
+
+  <h3>My rate came out higher than the market. Now what?</h3>
+  <p>That is information, not a verdict. Either the target income is above what this niche pays, the billable hours are unrealistically low, or the work needs repositioning. Dropping the number without changing anything else just means working the year at a loss.</p>
+</div>
+
+<footer>
+  <span>A First State Growth LLC property.</span>
+  <span>No tracking. No accounts. Nothing leaves your browser.</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var ids=['income','expenses','tax','weeksoff','billable','buffer'];
+  var sym='$', code='USD';
+
+  function fmt(n){
+    try{ return new Intl.NumberFormat(undefined,{style:'currency',currency:code,maximumFractionDigits:0}).format(n); }
+    catch(e){ return sym+Math.round(n).toLocaleString(); }
+  }
+  function num(id){ var v=parseFloat($(id).value); return isFinite(v)?v:0; }
+
+  function calc(){
+    var income=num('income'), exp=num('expenses');
+    var tax=Math.min(Math.max(num('tax'),0),95)/100;
+    var off=Math.min(Math.max(num('weeksoff'),0),50);
+    var bh=Math.max(num('billable'),1);
+    var buf=Math.max(num('buffer'),0)/100;
+
+    var weeks=52-off;
+    var hours=weeks*bh;
+    var preTax=income/(1-tax);
+    var base=preTax+exp;
+    var gross=base*(1+buf);
+    var hourly=hours>0?gross/hours:0;
+    var rounded=hours>0?Math.ceil(hourly/5)*5:0;
+
+    $('hourly').textContent=fmt(rounded);
+    $('daily').textContent=fmt(rounded*8);
+    $('weekly').textContent=fmt(rounded*bh);
+    $('bhw').textContent=bh;
+    $('bhy').textContent=Math.round(hours).toLocaleString()+' hrs';
+    $('gross').textContent=fmt(gross);
+    $('taxamt').textContent='− '+fmt(preTax-income);
+    $('expout').textContent='− '+fmt(exp);
+    $('bufout').textContent='− '+fmt(gross-base);
+    $('take').textContent=fmt(income);
+    $('taxpct').textContent=Math.round(tax*100);
+
+    var msg='';
+    if(bh>35) msg='Billing '+bh+' hours a week leaves almost no time for sales, admin and invoicing. Most full-time freelancers sustain 20–30.';
+    else if(off<2) msg='Fewer than 2 weeks off a year is not a plan, it is a countdown. Try 4–6.';
+    else if(tax===0) msg='A 0% tax rate will understate your rate badly. Enter your effective rate.';
+    else if(buf===0) msg='With no buffer, one gap between clients comes straight out of your take-home.';
+    $('flag').className=msg?'flag on':'flag';
+    $('flag').textContent=msg;
+
+    try{
+      var s={}; ids.forEach(function(i){s[i]=$(i).value}); s.cur=$('cur').value;
+      localStorage.setItem('frc',JSON.stringify(s));
+    }catch(e){}
+  }
+
+  function setCur(){
+    var p=$('cur').value.split('|'); code=p[0]; sym=p[1];
+    $('s1').textContent=sym; $('s2').textContent=sym; calc();
+  }
+
+  try{
+    var saved=JSON.parse(localStorage.getItem('frc')||'null');
+    if(saved){ ids.forEach(function(i){ if(saved[i]!=null) $(i).value=saved[i]; });
+      if(saved.cur) $('cur').value=saved.cur; }
+  }catch(e){}
+
+  ids.forEach(function(i){ $(i).addEventListener('input',calc); });
+  $('cur').addEventListener('change',setCur);
+
+  $('theme').addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme');
+    var dark=cur?cur==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+    document.documentElement.setAttribute('data-theme',dark?'light':'dark');
+    try{localStorage.setItem('frc-theme',dark?'light':'dark')}catch(e){}
+  });
+  try{ var t=localStorage.getItem('frc-theme'); if(t) document.documentElement.setAttribute('data-theme',t); }catch(e){}
+
+  setCur();
+})();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Freelance Rate Calculator",
+"applicationCategory":"BusinessApplication","operatingSystem":"Any","url":"https://freelancerate.us/",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+"publisher":{"@type":"Organization","name":"First State Growth LLC"}}
+</script>
+</body>
+</html>
