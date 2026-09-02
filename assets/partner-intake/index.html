@@ -512,8 +512,9 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:v
   function addEng(){ engCount++; engWrap.appendChild(engBlock(engCount)); }
   addEng(); addEng();
   document.getElementById('addEng').addEventListener('click', function(){
-    if (engCount >= 6) return;
+    if (engCount >= 5) { this.style.display = 'none'; return; }
     addEng(); save();
+    if (engCount >= 5) this.style.display = 'none';
   });
 
   // Build a readable plain-text summary for the respondent's own email client,
@@ -542,13 +543,22 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:v
     our_fee:'Our fee', duration:'Duration'
   };
 
-  function mailBody(d){
+  // Order matters. Mail clients cap URL length, so the project pricing goes
+  // near the top where it can never be the part that gets cut.
+  var ESSENTIAL = ['firm_name','contact_name','contact_email','contact_phone','city','country'];
+
+  function val_(d, k){
+    var v = d[k];
+    return Array.isArray(v) ? v.join(', ') : String(v == null ? '' : v).trim();
+  }
+
+  function mailLines(d){
     var L = [];
-    Object.keys(LABELS).forEach(function(k){
-      var v = d[k];
-      v = Array.isArray(v) ? v.join(', ') : String(v == null ? '' : v).trim();
+    ESSENTIAL.forEach(function(k){
+      var v = val_(d, k);
       if (v) L.push(LABELS[k] + ': ' + v);
     });
+
     for (var i = 1; i <= engCount; i++){
       var rows = [];
       Object.keys(ENGL).forEach(function(s){
@@ -557,21 +567,31 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:v
       });
       if (rows.length) L.push('', 'Project ' + i, rows.join('\n'));
     }
-    return L.join('\n');
+
+    var rest = [];
+    Object.keys(LABELS).forEach(function(k){
+      if (ESSENTIAL.indexOf(k) !== -1) return;
+      var v = val_(d, k);
+      if (v) rest.push(LABELS[k] + ': ' + v);
+    });
+    if (rest.length) L.push('', '--', rest.join('\n'));
+    return L;
+  }
+
+  function hrefFor(body){
+    return 'mailto:admin@firststate-growth.com' +
+      '?subject=' + encodeURIComponent('Certification partner details') +
+      '&body=' + encodeURIComponent(body);
   }
 
   function mailtoHref(d){
-    var subject = 'Certification partner details - ' + (String(d.firm_name || '').trim() || 'our firm');
-    var body = mailBody(d);
-    var href = 'mailto:admin@firststate-growth.com?subject=' + encodeURIComponent(subject) +
-               '&body=' + encodeURIComponent(body);
-    // Some mail clients choke on very long URLs; trim the tail if needed.
-    if (href.length > 1900) {
-      var room = body.length - (href.length - 1900) - 60;
-      body = body.slice(0, Math.max(room, 200)) +
-        '\n\n[Remainder was too long to fit here - please ask us for the rest.]';
-      href = 'mailto:admin@firststate-growth.com?subject=' + encodeURIComponent(subject) +
-             '&body=' + encodeURIComponent(body);
+    var MAX = 3800;
+    var lines = mailLines(d);
+    var href = hrefFor(lines.join('\n'));
+    // Drop trailing lines (the profile tail) until it fits. Projects survive.
+    while (href.length > MAX && lines.length > 8) {
+      lines.pop();
+      href = hrefFor(lines.join('\n') + '\n\n[Some details did not fit - please ask us.]');
     }
     return href;
   }
